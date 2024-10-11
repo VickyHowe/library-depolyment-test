@@ -4,13 +4,15 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require("body-parser");
 const schema = require("./models/bookSchema");
+const cors = require("cors");
 
 const Book = schema.Book;
 const Author = schema.Author;
 
 const app = express();
 app.use(bodyParser.json());
-// app.use(express.json());
+app.use(cors()); // open to all ip addresses
+
 
 const PORT = 3000
 const MONGO_URI = process.env.MONGO_URI
@@ -23,6 +25,7 @@ mongoose.connect(MONGO_URI)
 app.get("/", (req, res) => {
     res.send("Welcome to my API");
 });
+
 
 // GET ALL BOOKS
 app.get("/books", async (req, res) => {
