@@ -29,8 +29,7 @@ jobs:
               file: Dockerfile
               push: true
               tags: ${{ secrets.DOCKER_USERNAME }}/lesson8mongoose:latest
-              build-args: |
-                MONGO_URI=${{ secrets.MONGO_URI }}
+              build-args: MONGO_URI=${{ secrets.MONGO_URI }}
               
           - name: Deploy to Prod
             uses: johnbeynon/render-deploy-action@v0.0.8
